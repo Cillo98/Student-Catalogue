@@ -10,16 +10,18 @@ As the number of courses is very limited, my focus on optimization is on storing
 
 - The best option is then to use a **Trie** data structure, a particular kind of B-Tree where nodes are *Characters* with a *HashMaps* of *<Character, Node>* pairs, in such a way that each node has a Character value and a set of children nodes. By traversing down a tree and keeping track of the encountered nodes, words are created. As the picture below shows, the Trie stores four names: Alice, Bob, Bobby and Boray. All operations on the Trie have a time complexity of *O(k)*, where k is the height of the Trie, so the length of the longest name. As names are short, it can be considered that the time complexity is *O(1)* for all insertion, update, deletion and retrieval operations. The only exception is made by the List method, that uses a sorting algorithm with two criteria to order marks and students, and has a time complexity of *O(n<sup>2</sup>)*, with n the number of students in the dataset taking the specified course.
 
+![Data Structure visualization](/res/trie.png?raw=true "Structure of the Trie of student Nodes")
+
 ## Efficiency
 The Trie allows a very efficient use of space, as datasets with few entries are stored in a little space, and datasets with big amounts of entries are stored very efficiently in a tree, without wasted space for the names of the students. In a Trie with over 450.000 entries a specific node can be retrieved in as few as 4 operations. In fact, in the best-case scenario values are retrieved in log<sub>26</sub>(n) operations, where n is the number of entries in the dataset. In the worst-case scenario, values are retrieved in k operations, where k is the height of the Trie. In the graph below, it is assumed that the longest name in the database is made of 20 letters (it’s a very long name!).
 
-// TODO: INSERT GRAPH HERE
+In the following graphs, the red line is the worst-case scenario, the blue line is the best-case scenario. On the x-axis there is the number of entries in the database, on the y-axis the number of operations to insert, update and delete a student.
 
-The red line is the worst-case scenario, the blue line is the best-case scenario. On the x-axis there is the number of entries in the database, on the y-axis the number of operations to insert, update and delete a student.
-
-// TODO: INSERT GRAPH HERE
+![First Graph](/res/graph_1.png?raw=true "Time complexity for small datasets")
 
 For smaller datasets (up to 60 entries) it can be seen that the worst-case scenario is fixed at 20 (20 is considered the maximum name length), while the best-case scenario does not go over 2 operations. The data structure is both time and space efficient.
+
+![Second Graph](/res/graph_2.png?raw=true "Time complexity for large datasets")
 
 For bigger databases the situation does not change: the worst access time is still 20, the best access time is 4 for a dataset with over 280.000 entries. The dataset is time and space efficient even for huge datasets.
 
